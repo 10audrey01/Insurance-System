@@ -11,9 +11,15 @@ public class InsuranceSystem {
   }
 
   public void printDatabase() {
-    String strNumberOfProfiles = String.valueOf(numberOfProfiles);
+    String strNumberOfProfiles = String.valueOf(numberOfProfiles); // convert int to string
     if (numberOfProfiles == 0) {
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage(strNumberOfProfiles, "s",".");
+    } 
+    else if (numberOfProfiles == 1) {
+      MessageCli.PRINT_DB_POLICY_COUNT.printMessage(strNumberOfProfiles, "", ":");
+    }
+    else {
+      MessageCli.PRINT_DB_POLICY_COUNT.printMessage(strNumberOfProfiles, "s", ":");
     }
   }
 
