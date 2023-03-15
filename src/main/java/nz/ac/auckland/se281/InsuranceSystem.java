@@ -6,13 +6,13 @@ import nz.ac.auckland.se281.Main.PolicyType;
 public class InsuranceSystem {
   private int numberOfProfiles;
   private ArrayList<String> profileNames;
-  private ArrayList<Integer> profileAges;
+  private ArrayList<String> profileAges;
 
   public InsuranceSystem() {
     // Only this constructor can be used (if you need to initialise fields).
     numberOfProfiles = 0;
     profileNames = new ArrayList<String>();
-    profileAges = new ArrayList<Integer>();
+    profileAges = new ArrayList<String>();
   }
 
   public void printDatabase() {
