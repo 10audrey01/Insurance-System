@@ -32,7 +32,7 @@ public class InsuranceSystem {
     boolean validProfile = true;
     boolean uniqueUsername = true;
 
-    for (String name : profileNames) {
+    for (String name : profileNames) { // check if userName is already in database
       if (name.equals(userName)) {
         uniqueUsername = false;
       }
@@ -47,9 +47,9 @@ public class InsuranceSystem {
       MessageCli.INVALID_USERNAME_NOT_UNIQUE.printMessage(userName);
     }
 
-    int intAge = stringAgeToInt(age);
+    int intAge = stringAgeToInt(age); // convert parameter age to integer
 
-    if (intAge < 0) {
+    if (intAge < 0) { // check if the age is not a positive integer, eg. decimal number, negative number or string
       validProfile = false;
       MessageCli.INVALID_AGE.printMessage(age, userName);
     }
@@ -62,7 +62,7 @@ public class InsuranceSystem {
     }
   }
 
-  public int stringAgeToInt(String age) {
+  public int stringAgeToInt(String age) { // created own method to convert age to a POSITIVE integer
     try {
       return Integer.parseInt(age);
     } 
