@@ -38,6 +38,7 @@ public class InsuranceSystem {
 
     if (validProfile) {
       profileNames.add(userName);
+      profileAges.add(age);
     }
   }
 
