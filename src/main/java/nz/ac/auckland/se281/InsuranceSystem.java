@@ -30,10 +30,15 @@ public class InsuranceSystem {
 
   public void createNewProfile(String userName, String age) {
     boolean validProfile = true;
+    boolean uniqueUsername = true;
 
     if (userName.length() < 3) {
       validProfile = false;
       MessageCli.INVALID_USERNAME_TOO_SHORT.printMessage(userName);
+    }
+    else if (!uniqueUsername) {
+      validProfile = false;
+      MessageCli.INVALID_USERNAME_NOT_UNIQUE.printMessage(userName);
     }
 
     if (validProfile) {
