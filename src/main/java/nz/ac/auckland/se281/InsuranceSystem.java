@@ -28,6 +28,11 @@ public class InsuranceSystem {
 
   public void createNewProfile(String userName, String age) {
     boolean validProfile = true;
+
+    if (userName.length() < 3) {
+      validProfile = false;
+      MessageCli.INVALID_USERNAME_TOO_SHORT.printMessage(userName);
+    }
   }
 
   public void loadProfile(String userName) {
