@@ -47,6 +47,13 @@ public class InsuranceSystem {
       MessageCli.INVALID_USERNAME_NOT_UNIQUE.printMessage(userName);
     }
 
+    int intAge = stringAgeToInt(age);
+
+    if (intAge < 0) {
+      validProfile = false;
+      MessageCli.INVALID_AGE.printMessage(age, userName);
+    }
+
     if (validProfile) {
       profileNames.add(userName);
       profileAges.add(age);
