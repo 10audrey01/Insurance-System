@@ -11,7 +11,6 @@ public class InsuranceSystem {
     // Only this constructor can be used (if you need to initialise fields).
     numberOfProfiles = 0;
     ArrayList<String> profiles = new ArrayList<String>();
-
   }
 
   public void printDatabase() {
@@ -28,7 +27,7 @@ public class InsuranceSystem {
   }
 
   public void createNewProfile(String userName, String age) {
-    // TODO: Complete this method.
+    boolean validProfile = true;
   }
 
   public void loadProfile(String userName) {
