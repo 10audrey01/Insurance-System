@@ -5,12 +5,12 @@ import nz.ac.auckland.se281.Main.PolicyType;
 
 public class InsuranceSystem {
   private int numberOfProfiles;
-  private String[] profiles;
+  private ArrayList<String> profiles;
 
   public InsuranceSystem() {
     // Only this constructor can be used (if you need to initialise fields).
     numberOfProfiles = 0;
-    ArrayList<String> profiles = new ArrayList<String>();
+    profiles = new ArrayList<String>();
   }
 
   public void printDatabase() {
