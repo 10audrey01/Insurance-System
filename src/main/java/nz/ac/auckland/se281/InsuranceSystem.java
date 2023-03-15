@@ -53,6 +53,15 @@ public class InsuranceSystem {
     }
   }
 
+  public int stringAgeToInt(String age) {
+    try {
+      return Integer.parseInt(age);
+    } 
+    catch (NumberFormatException e) {
+      return -1;
+    }
+  }
+
   public void loadProfile(String userName) {
     // TODO: Complete this method.
   }
