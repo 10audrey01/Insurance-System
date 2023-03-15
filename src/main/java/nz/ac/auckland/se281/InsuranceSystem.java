@@ -57,6 +57,8 @@ public class InsuranceSystem {
     if (validProfile) {
       profileNames.add(userName);
       profileAges.add(age);
+      MessageCli.PROFILE_CREATED.printMessage(userName, age);
+      numberOfProfiles++;
     }
   }
 
