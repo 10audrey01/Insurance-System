@@ -5,12 +5,12 @@ import nz.ac.auckland.se281.Main.PolicyType;
 
 public class InsuranceSystem {
   private int numberOfProfiles;
-  private ArrayList<String> profiles;
+  private ArrayList<String> profileNames;
 
   public InsuranceSystem() {
     // Only this constructor can be used (if you need to initialise fields).
     numberOfProfiles = 0;
-    profiles = new ArrayList<String>();
+    profileNames = new ArrayList<String>();
   }
 
   public void printDatabase() {
@@ -32,6 +32,10 @@ public class InsuranceSystem {
     if (userName.length() < 3) {
       validProfile = false;
       MessageCli.INVALID_USERNAME_TOO_SHORT.printMessage(userName);
+    }
+
+    if (validProfile) {
+      profileNames.add(userName);
     }
   }
 
