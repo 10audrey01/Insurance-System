@@ -32,6 +32,12 @@ public class InsuranceSystem {
     boolean validProfile = true;
     boolean uniqueUsername = true;
 
+    for (String name : profileNames) {
+      if (name.equals(userName)) {
+        uniqueUsername = false;
+      }
+    }
+
     if (userName.length() < 3) {
       validProfile = false;
       MessageCli.INVALID_USERNAME_TOO_SHORT.printMessage(userName);
