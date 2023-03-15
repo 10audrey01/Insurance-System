@@ -1,13 +1,17 @@
 package nz.ac.auckland.se281;
 
+import java.util.ArrayList;
 import nz.ac.auckland.se281.Main.PolicyType;
 
 public class InsuranceSystem {
   private int numberOfProfiles;
+  private String[] profiles;
 
   public InsuranceSystem() {
     // Only this constructor can be used (if you need to initialise fields).
     numberOfProfiles = 0;
+    ArrayList<String> profiles = new ArrayList<String>();
+
   }
 
   public void printDatabase() {
