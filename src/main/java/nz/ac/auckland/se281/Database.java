@@ -10,4 +10,12 @@ public class Database {
     numberOfProfiles = 0;
     profiles = new ArrayList<String>();
   }
+
+  public int getNumberOfProfiles() {
+    return numberOfProfiles;
+  }
+
+  public ArrayList<String> getProfiles() {
+    return profiles;
+  }
 }
