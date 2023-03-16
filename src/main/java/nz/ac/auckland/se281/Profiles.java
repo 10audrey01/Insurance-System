@@ -8,4 +8,8 @@ public class Profiles {
     this.userName = userName;
     this.age = age;
   }
+
+  public String getUserName() {
+    return userName;
+  }
 }

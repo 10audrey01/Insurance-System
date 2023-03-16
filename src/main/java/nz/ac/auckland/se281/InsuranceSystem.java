@@ -19,7 +19,6 @@ public class InsuranceSystem {
 
   public void printDatabase() {
     int numberOfProfiles = profileList.size();
-
     String strNumberOfProfiles = String.valueOf(numberOfProfiles); // convert int to string
 
     if (numberOfProfiles == 0) {
@@ -32,6 +31,7 @@ public class InsuranceSystem {
   }
 
   public void createNewProfile(String userName, String age) {
+    int numberOfProfiles = profileList.size();
     boolean validProfile = true;
     boolean uniqueUsername = true;
 
@@ -40,6 +40,15 @@ public class InsuranceSystem {
         uniqueUsername = false;
       }
     }*/
+    for (int i = 0; i < numberOfProfiles; i++) {
+      if ((profileList.get(i))
+          .getUserName()
+          .equals(
+              userName)) { // got Profile in profile list at index i, then got userName and compared
+        // to parameter userName
+        uniqueUsername = false;
+      }
+    }
 
     if (userName.length() < 3) {
       validProfile = false;
