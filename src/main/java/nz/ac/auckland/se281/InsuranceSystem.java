@@ -50,11 +50,17 @@ public class InsuranceSystem {
         uniqueUsername = false;
       }
     }*/
+
+    String lowerCaseUserName = userName.toLowerCase();
+    String titlecaseUserName =
+        lowerCaseUserName.substring(0, 1).toUpperCase() + lowerCaseUserName.substring(1);
+
     for (int i = 0; i < numberOfProfiles; i++) {
       if ((profileList.get(i))
           .getUserName()
           .equals(
-              userName)) { // got Profile in profileList at index i, then got userName and compared
+              titlecaseUserName)) { // got Profile in profileList at index i, then got userName and
+        // compared
         // to parameter userName
         uniqueUsername = false;
       }
@@ -62,23 +68,23 @@ public class InsuranceSystem {
 
     if (userName.length() < 3) {
       validProfile = false;
-      MessageCli.INVALID_USERNAME_TOO_SHORT.printMessage(userName);
+      MessageCli.INVALID_USERNAME_TOO_SHORT.printMessage(titlecaseUserName);
     } else if (!uniqueUsername) {
       validProfile = false;
-      MessageCli.INVALID_USERNAME_NOT_UNIQUE.printMessage(userName);
+      MessageCli.INVALID_USERNAME_NOT_UNIQUE.printMessage(titlecaseUserName);
     }
 
     int intAge = stringAgeToInt(age); // convert parameter age to integer
 
     if (intAge < 0) { // check if the age is not a positive integer, including decimals/strings
       validProfile = false;
-      MessageCli.INVALID_AGE.printMessage(age, userName);
+      MessageCli.INVALID_AGE.printMessage(age, titlecaseUserName);
     }
 
     if (validProfile) {
-      Profiles profile = new Profiles(userName, age);
+      Profiles profile = new Profiles(titlecaseUserName, age);
       profileList.add(profile);
-      MessageCli.PROFILE_CREATED.printMessage(userName, age);
+      MessageCli.PROFILE_CREATED.printMessage(titlecaseUserName, age);
     }
   }
 
