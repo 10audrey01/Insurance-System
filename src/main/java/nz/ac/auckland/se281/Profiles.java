@@ -1,4 +1,4 @@
-package nz.ac.auckland;
+package nz.ac.auckland.se281;
 
 public class Profiles {
   private String userName;

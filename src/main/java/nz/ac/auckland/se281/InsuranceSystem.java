@@ -4,19 +4,24 @@ import java.util.ArrayList;
 import nz.ac.auckland.se281.Main.PolicyType;
 
 public class InsuranceSystem {
-  private int numberOfProfiles;
+  /* private int numberOfProfiles;
   private ArrayList<String> profileNames;
-  private ArrayList<String> profileAges;
+  private ArrayList<String> profileAges; */
+  // private Database profiles = new Database();
+  ArrayList<Profiles> profileList = new ArrayList<Profiles>(); // profiles.getProfiles();
 
   public InsuranceSystem() {
     // Only this constructor can be used (if you need to initialise fields).
-    numberOfProfiles = 0;
+    /*numberOfProfiles = 0;
     profileNames = new ArrayList<String>();
-    profileAges = new ArrayList<String>();
+    profileAges = new ArrayList<String>();*/
   }
 
   public void printDatabase() {
+    int numberOfProfiles = profileList.size();
+
     String strNumberOfProfiles = String.valueOf(numberOfProfiles); // convert int to string
+
     if (numberOfProfiles == 0) {
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage(strNumberOfProfiles, "s", ".");
     } else if (numberOfProfiles == 1) {
@@ -30,11 +35,11 @@ public class InsuranceSystem {
     boolean validProfile = true;
     boolean uniqueUsername = true;
 
-    for (String name : profileNames) { // check if userName is already in database
+    /*for (String name : profileList) { // check if userName is already in database
       if (name.equals(userName)) {
         uniqueUsername = false;
       }
-    }
+    }*/
 
     if (userName.length() < 3) {
       validProfile = false;
@@ -52,10 +57,9 @@ public class InsuranceSystem {
     }
 
     if (validProfile) {
-      profileNames.add(userName);
-      profileAges.add(age);
+      Profiles profile = new Profiles(userName, age);
+      profileList.add(profile);
       MessageCli.PROFILE_CREATED.printMessage(userName, age);
-      numberOfProfiles++;
     }
   }
 
