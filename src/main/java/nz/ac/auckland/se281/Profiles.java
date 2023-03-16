@@ -12,4 +12,8 @@ public class Profiles {
   public String getUserName() {
     return userName;
   }
+
+  public String getAge() {
+    return age;
+  }
 }

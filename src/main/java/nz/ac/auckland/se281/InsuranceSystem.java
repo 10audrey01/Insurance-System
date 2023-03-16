@@ -20,13 +20,23 @@ public class InsuranceSystem {
   public void printDatabase() {
     int numberOfProfiles = profileList.size();
     String strNumberOfProfiles = String.valueOf(numberOfProfiles); // convert int to string
+    String profileToPrint;
 
     if (numberOfProfiles == 0) {
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage(strNumberOfProfiles, "s", ".");
     } else if (numberOfProfiles == 1) {
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage(strNumberOfProfiles, "", ":");
+      profileToPrint =
+          "1: " + (profileList.get(0)).getUserName() + ", " + (profileList.get(0)).getAge();
+      System.out.println(profileToPrint);
     } else {
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage(strNumberOfProfiles, "s", ":");
+      for (int i = 0; i < numberOfProfiles; i++) {
+        int rank = i + 1;
+        profileToPrint =
+            rank + ": " + (profileList.get(i)).getUserName() + ", " + (profileList.get(i)).getAge();
+        System.out.println(profileToPrint);
+      }
     }
   }
 
@@ -44,7 +54,7 @@ public class InsuranceSystem {
       if ((profileList.get(i))
           .getUserName()
           .equals(
-              userName)) { // got Profile in profile list at index i, then got userName and compared
+              userName)) { // got Profile in profileList at index i, then got userName and compared
         // to parameter userName
         uniqueUsername = false;
       }
