@@ -4,18 +4,9 @@ import java.util.ArrayList;
 import nz.ac.auckland.se281.Main.PolicyType;
 
 public class InsuranceSystem {
-  /* private int numberOfProfiles;
-  private ArrayList<String> profileNames;
-  private ArrayList<String> profileAges; */
-  // private Database profiles = new Database();
   ArrayList<Profiles> profileList = new ArrayList<Profiles>(); // profiles.getProfiles();
 
-  public InsuranceSystem() {
-    // Only this constructor can be used (if you need to initialise fields).
-    /*numberOfProfiles = 0;
-    profileNames = new ArrayList<String>();
-    profileAges = new ArrayList<String>();*/
-  }
+  public InsuranceSystem() {}
 
   public void printDatabase() {
     int numberOfProfiles = profileList.size();
@@ -44,12 +35,6 @@ public class InsuranceSystem {
     int numberOfProfiles = profileList.size();
     boolean validProfile = true;
     boolean uniqueUsername = true;
-
-    /*for (String name : profileList) { // check if userName is already in database
-      if (name.equals(userName)) {
-        uniqueUsername = false;
-      }
-    }*/
 
     String lowerCaseUserName = userName.toLowerCase();
     String titlecaseUserName =
