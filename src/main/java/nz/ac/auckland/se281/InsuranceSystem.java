@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import nz.ac.auckland.se281.Main.PolicyType;
 
 public class InsuranceSystem {
-  ArrayList<Profiles> profileList = new ArrayList<Profiles>(); // profiles.getProfiles();
+  ArrayList<Profiles> profileList = new ArrayList<Profiles>();
 
   public InsuranceSystem() {}
 
