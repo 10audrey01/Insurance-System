@@ -61,7 +61,7 @@ public class InsuranceSystem {
 
     int intAge = stringAgeToInt(age); // convert parameter age to integer
 
-    if (intAge < 0) { // check if the age is not a positive integer, including decimals/strings
+    if (intAge < 0) {
       validProfile = false;
       MessageCli.INVALID_AGE.printMessage(age, titlecaseUserName);
     }
@@ -76,7 +76,9 @@ public class InsuranceSystem {
   public int stringAgeToInt(String age) { // created own method to convert age to a POSITIVE integer
     try {
       return Integer.parseInt(age);
-    } catch (NumberFormatException e) {
+    } catch (
+        NumberFormatException
+            e) { // return error (-1) if age is not a positive integer, including decimals/strings
       return -1;
     }
   }
