@@ -11,10 +11,10 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({
-    MainTest.Task1.class,
-    // MainTest.Task2.class, // Uncomment this line when to start Task 2
-    // MainTest.Task3.class, // Uncomment this line when to start Task 3
-   // MainTest.YourTests.class, // Uncomment this line to run your own tests
+  MainTest.Task1.class,
+  // MainTest.Task2.class, // Uncomment this line when to start Task 2
+  // MainTest.Task3.class, // Uncomment this line when to start Task 3
+  MainTest.YourTests.class, // Uncomment this line to run your own tests
 })
 public class MainTest {
   public static class Task1 extends CliTest {
@@ -366,16 +366,26 @@ public class MainTest {
       // Write your own test here, in the same format as the other tests.
       runCommands(
           PRINT_DB,
-          CREATE_PROFILE, "jENnY", "twenty",
-          CREATE_PROFILE, "audrey", "-34",
-          CREATE_PROFILE, "JENNY", "1",
-          CREATE_PROFILE, "jeNny", "4",
+          CREATE_PROFILE,
+          "jENnY",
+          "twenty",
+          CREATE_PROFILE,
+          "audrey",
+          "-34",
+          CREATE_PROFILE,
+          "JENNY",
+          "1",
+          CREATE_PROFILE,
+          "jeNny",
+          "4",
           PRINT_DB);
       assertContains("Database has 0 profiles.");
-      assertContains("'twenty' is an invalid age, please provide a positive whole number only. No profile was created"
-          + " for Jenny.");
-      assertContains("'-34' is an invalid age, please provide a positive whole number only. No profile was created"
-          + " for Audrey.");
+      assertContains(
+          "'twenty' is an invalid age, please provide a positive whole number only. No profile was"
+              + " created for Jenny.");
+      assertContains(
+          "'-34' is an invalid age, please provide a positive whole number only. No profile was"
+              + " created for Audrey.");
       assertContains("New profile created for Jenny with age 1.");
       assertContains("Usernames must be unique. No profile was created for 'Jenny'.");
       assertContains("Database has 1 profile:");
@@ -385,16 +395,34 @@ public class MainTest {
     @Test
     public void TY_02_your_own_test() throws Exception {
       // Write your own test here, in the same format as the other tests.
-      runCommands(PRINT_DB);
-      assertContains("");
+      runCommands(
+          PRINT_DB,
+          CREATE_PROFILE,
+          "Audrey",
+          "21",
+          CREATE_PROFILE,
+          "Jenny",
+          "21",
+          CREATE_PROFILE,
+          "Jello",
+          "100",
+          PRINT_DB);
+      assertContains("Database has 0 profiles.");
+      assertContains("New profile created for Audrey with age 21.");
+      assertContains("New profile created for Jenny with age 21.");
+      assertContains("New profile created for Jello with age 100.");
+      assertContains("1: Audrey, 21");
+      assertContains("2: Jenny, 21");
+      assertContains("3: Jello, 100");
     }
   }
 
-  private static final Object[] CREATE_SOME_CLIENTS = new Object[] {
-      CREATE_PROFILE, "Jordan", "21", //
-      CREATE_PROFILE, "Tom", "25", //
-      CREATE_PROFILE, "Jenny", "23",
-  };
+  private static final Object[] CREATE_SOME_CLIENTS =
+      new Object[] {
+        CREATE_PROFILE, "Jordan", "21", //
+        CREATE_PROFILE, "Tom", "25", //
+        CREATE_PROFILE, "Jenny", "23",
+      };
 
   private static Object[] unpack(Object[] commands, Object... more) {
     final List<Object> all = new ArrayList<Object>();
