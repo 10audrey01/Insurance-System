@@ -98,8 +98,15 @@ public class InsuranceSystem {
       if ((profileList.get(i)).getUserName().equals(titlecaseUserName)) {
         System.out.println("Profile loaded for " + titlecaseUserName + ".");
         profileFound = true;
-        profileList.get(i).setProfileLoadedToTrue();
-        break;
+        profileList.get(i).setProfileLoadedTo(true);
+        for (int j = 0; j < numberOfProfiles; j++) {
+          if ((profileList.get(i).getProfileLoaded() == profileList.get(j).getProfileLoaded())
+              && (profileList.get(i).getUserName() != profileList.get(j).getUserName())) {
+            profileList.get(j).setProfileLoadedTo(false);
+            // if there is a different previously loaded profile,
+            // unload that profile and load the current profile
+          }
+        }
       }
     }
 
