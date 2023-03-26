@@ -19,7 +19,11 @@ public class Profiles {
     return age;
   }
 
-  public void setProfileLoadedToTrue() {
-    this.profileLoaded = true;
+  public boolean getProfileLoaded() {
+    return this.profileLoaded;
+  }
+
+  public void setProfileLoadedTo(boolean trueOrFalse) {
+    this.profileLoaded = trueOrFalse;
   }
 }
