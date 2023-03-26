@@ -24,8 +24,24 @@ public class InsuranceSystem {
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage(strNumberOfProfiles, "s", ":");
       for (int i = 0; i < numberOfProfiles; i++) {
         int rank = i + 1;
-        profileToPrint =
-            rank + ": " + (profileList.get(i)).getUserName() + ", " + (profileList.get(i)).getAge();
+
+        if (profileList.get(i).getProfileLoaded()) {
+          profileToPrint =
+              "*** "
+                  + rank
+                  + ": "
+                  + (profileList.get(i)).getUserName()
+                  + ", "
+                  + (profileList.get(i)).getAge();
+        } else {
+          profileToPrint =
+              rank
+                  + ": "
+                  + (profileList.get(i)).getUserName()
+                  + ", "
+                  + (profileList.get(i)).getAge();
+        }
+
         System.out.println(profileToPrint);
       }
     }
@@ -101,7 +117,7 @@ public class InsuranceSystem {
         profileList.get(i).setProfileLoadedTo(true);
         for (int j = 0; j < numberOfProfiles; j++) {
           if ((profileList.get(i).getProfileLoaded() == profileList.get(j).getProfileLoaded())
-              && (profileList.get(i).getUserName() != profileList.get(j).getUserName())) {
+              && !(profileList.get(i).getUserName().equals(profileList.get(j).getUserName()))) {
             profileList.get(j).setProfileLoadedTo(false);
             // if there is a different previously loaded profile,
             // unload that profile and load the current profile
