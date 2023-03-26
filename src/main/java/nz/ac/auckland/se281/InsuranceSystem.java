@@ -36,9 +36,7 @@ public class InsuranceSystem {
     boolean validProfile = true;
     boolean uniqueUsername = true;
 
-    String lowerCaseUserName = userName.toLowerCase();
-    String titlecaseUserName =
-        lowerCaseUserName.substring(0, 1).toUpperCase() + lowerCaseUserName.substring(1);
+    String titlecaseUserName = toTitlecase(userName);
 
     for (int i = 0; i < numberOfProfiles; i++) {
       if ((profileList.get(i))
@@ -81,6 +79,13 @@ public class InsuranceSystem {
             e) { // return error (-1) if age is not a positive integer, including decimals/strings
       return -1;
     }
+  }
+
+  public String toTitlecase(String userName) {
+    String lowerCaseUserName = userName.toLowerCase();
+    String titlecaseUserName =
+        lowerCaseUserName.substring(0, 1).toUpperCase() + lowerCaseUserName.substring(1);
+    return titlecaseUserName;
   }
 
   public void loadProfile(String userName) {
