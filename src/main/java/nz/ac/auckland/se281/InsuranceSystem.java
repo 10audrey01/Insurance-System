@@ -46,6 +46,7 @@ public class InsuranceSystem {
         // compared
         // to parameter userName
         uniqueUsername = false;
+        break;
       }
     }
 
@@ -89,7 +90,22 @@ public class InsuranceSystem {
   }
 
   public void loadProfile(String userName) {
-    // TODO: Complete this method.
+    int numberOfProfiles = profileList.size();
+    String titlecaseUserName = toTitlecase(userName);
+    boolean profileFound = false;
+
+    for (int i = 0; i < numberOfProfiles; i++) {
+      if ((profileList.get(i)).getUserName().equals(titlecaseUserName)) {
+        System.out.println("Profile loaded for " + titlecaseUserName + ".");
+        profileFound = true;
+        profileList.get(i).setProfileLoadedToTrue();
+        break;
+      }
+    }
+
+    if (!profileFound) {
+      System.out.println("No profile found for " + titlecaseUserName + ". Profile not loaded.");
+    }
   }
 
   public void unloadProfile() {
