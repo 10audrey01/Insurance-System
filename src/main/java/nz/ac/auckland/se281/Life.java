@@ -6,4 +6,8 @@ public class Life extends PolicyType {
   public Life(int sumInsured) {
     this.sumInsured = sumInsured;
   }
+
+  public int getSumInsured() {
+    return sumInsured;
+  }
 }

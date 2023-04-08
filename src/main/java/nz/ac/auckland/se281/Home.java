@@ -10,4 +10,16 @@ public class Home extends PolicyType {
     this.address = address;
     this.rental = rental;
   }
+
+  public int getSumInsured() {
+    return sumInsured;
+  }
+
+  public String getAddress() {
+    return address;
+  }
+
+  public boolean isRental() {
+    return rental;
+  }
 }

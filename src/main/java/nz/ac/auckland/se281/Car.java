@@ -13,4 +13,20 @@ public class Car extends PolicyType {
     this.licensePlate = licensePlate;
     this.mechanicalBreakdown = mechanicalBreakdown;
   }
+
+  public int getSumInsured() {
+    return sumInsured;
+  }
+
+  public String getMakeAndModel() {
+    return makeAndModel;
+  }
+
+  public String getLicensePlate() {
+    return licensePlate;
+  }
+
+  public boolean isMechanicalBreakdown() {
+    return mechanicalBreakdown;
+  }
 }
