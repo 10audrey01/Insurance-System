@@ -223,6 +223,8 @@ public class InsuranceSystem {
           Home homePolicy =
               new Home(stringToPositiveInt(options[0]), options[1], stringToBoolean(options[2]));
           loadedProfile.setHomePolicy(homePolicy);
+          System.out.println("New home policy created for " + loadedProfile.getUserName() + ".");
+          break;
         case CAR:
           Car carPolicy =
               new Car(
@@ -231,6 +233,8 @@ public class InsuranceSystem {
                   options[2],
                   stringToBoolean(options[3]));
           loadedProfile.setCarPolicy(carPolicy);
+          System.out.println("New car policy created for " + loadedProfile.getUserName() + ".");
+          break;
         case LIFE:
           if (stringToPositiveInt(loadedProfile.getAge()) > 100) {
             System.out.println(
@@ -241,7 +245,9 @@ public class InsuranceSystem {
           } else {
             Life lifePolicy = new Life(stringToPositiveInt(options[0]));
             loadedProfile.setLifePolicy(lifePolicy);
+            System.out.println("New life policy created for " + loadedProfile.getUserName() + ".");
           }
+          break;
       }
     }
   }
