@@ -165,7 +165,28 @@ public class InsuranceSystem {
   }
 
   public void deleteProfile(String userName) {
-    // TODO: Complete this method.
+    String titlecaseUserName = toTitlecase(userName);
+    boolean profileFound = false;
+
+    for (int i = 0; i < profileList.size(); i++) {
+      if ((profileList.get(i)).getUserName().equals(titlecaseUserName)) {
+        profileFound = true;
+        if (profileList.get(i).getProfileLoaded()) {
+          System.out.println(
+              "Cannot delete profile for "
+                  + titlecaseUserName
+                  + " while loaded. No profile was deleted.");
+          break;
+        } else {
+          profileList.remove(i);
+          System.out.println("Profile deleted for " + titlecaseUserName + ".");
+        }
+      }
+    }
+
+    if (!profileFound) {
+      System.out.println("No profile found for " + titlecaseUserName + ". Profile not deleted.");
+    }
   }
 
   public void createPolicy(PolicyType type, String[] options) {
