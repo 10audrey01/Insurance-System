@@ -53,14 +53,13 @@ public class InsuranceSystem {
   }
 
   public void createNewProfile(String userName, String age) {
-    int numberOfProfiles = profileList.size();
     boolean validProfile = true;
     boolean uniqueUsername = true;
     boolean profileLoaded = false;
 
     String titlecaseUserName = toTitlecase(userName);
 
-    for (int i = 0; i < numberOfProfiles; i++) {
+    for (int i = 0; i < profileList.size(); i++) {
       if ((profileList.get(i))
           .getUserName()
           .equals(
@@ -87,7 +86,7 @@ public class InsuranceSystem {
       MessageCli.INVALID_AGE.printMessage(age, titlecaseUserName);
     }
 
-    for (int i = 0; i < numberOfProfiles; i++) {
+    for (int i = 0; i < profileList.size(); i++) {
       if (profileList.get(i).getProfileLoaded()) {
         profileLoaded = true;
         System.out.println(
@@ -123,16 +122,15 @@ public class InsuranceSystem {
   }
 
   public void loadProfile(String userName) {
-    int numberOfProfiles = profileList.size();
     String titlecaseUserName = toTitlecase(userName);
     boolean profileFound = false;
 
-    for (int i = 0; i < numberOfProfiles; i++) {
+    for (int i = 0; i < profileList.size(); i++) {
       if ((profileList.get(i)).getUserName().equals(titlecaseUserName)) {
         System.out.println("Profile loaded for " + titlecaseUserName + ".");
         profileFound = true;
         profileList.get(i).setProfileLoadedTo(true);
-        for (int j = 0; j < numberOfProfiles; j++) {
+        for (int j = 0; j < profileList.size(); j++) {
           if (profileList.get(j).getProfileLoaded()
               && !(profileList.get(i).getUserName().equals(profileList.get(j).getUserName()))) {
 
@@ -150,7 +148,20 @@ public class InsuranceSystem {
   }
 
   public void unloadProfile() {
-    // TODO: Complete this method.
+    boolean aProfileIsLoaded = false;
+
+    for (int i = 0; i < profileList.size(); i++) {
+      if (profileList.get(i).getProfileLoaded()) {
+        aProfileIsLoaded = true;
+        System.out.println("Profile unloaded for " + (profileList.get(i)).getUserName() + ".");
+        profileList.get(i).setProfileLoadedTo(false);
+        break;
+      }
+    }
+
+    if (!aProfileIsLoaded) {
+      System.out.println("No profile is currently loaded.");
+    }
   }
 
   public void deleteProfile(String userName) {
