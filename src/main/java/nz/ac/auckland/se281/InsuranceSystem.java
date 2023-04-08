@@ -79,7 +79,7 @@ public class InsuranceSystem {
       MessageCli.INVALID_USERNAME_NOT_UNIQUE.printMessage(titlecaseUserName);
     }
 
-    int intAge = stringAgeToInt(age); // convert parameter age to integer
+    int intAge = stringToPositiveInt(age); // convert parameter age to integer
 
     if (intAge < 0) {
       validProfile = false;
@@ -104,13 +104,28 @@ public class InsuranceSystem {
     }
   }
 
-  public int stringAgeToInt(String age) { // created own method to convert age to a POSITIVE integer
+  public int stringToPositiveInt(
+      String n) { // created own method to convert age to a POSITIVE integer
     try {
-      return Integer.parseInt(age);
+      return Integer.parseInt(n);
     } catch (
         NumberFormatException
-            e) { // return error (-1) if age is not a positive integer, including decimals/strings
+            e) { // return error (-1) if n is not a positive integer, including decimals/strings
       return -1;
+    }
+  }
+
+  public boolean stringToBoolean(String yesOrNo) {
+    if (yesOrNo.toLowerCase().equals("yes")) {
+      return true;
+    } else if (yesOrNo.toLowerCase().equals("no")) {
+      return false;
+    } else if (yesOrNo.toLowerCase().equals("y")) {
+      return true;
+    } else if (yesOrNo.toLowerCase().equals("n")) {
+      return false;
+    } else {
+      return false;
     }
   }
 
@@ -147,20 +162,26 @@ public class InsuranceSystem {
     }
   }
 
-  public void unloadProfile() {
-    boolean aProfileIsLoaded = false;
+  public Profiles findLoadedProfile() {
+    Profiles loadedProfile = null;
 
     for (int i = 0; i < profileList.size(); i++) {
       if (profileList.get(i).getProfileLoaded()) {
-        aProfileIsLoaded = true;
-        System.out.println("Profile unloaded for " + (profileList.get(i)).getUserName() + ".");
-        profileList.get(i).setProfileLoadedTo(false);
-        break;
+        loadedProfile = profileList.get(i);
       }
     }
 
-    if (!aProfileIsLoaded) {
+    return loadedProfile;
+  }
+
+  public void unloadProfile() {
+    Profiles loadedProfile = findLoadedProfile();
+
+    if (loadedProfile == null) {
       System.out.println("No profile is currently loaded.");
+    } else {
+      System.out.println("Profile unloaded for " + loadedProfile.getUserName() + ".");
+      loadedProfile.setProfileLoadedTo(false);
     }
   }
 
@@ -190,6 +211,24 @@ public class InsuranceSystem {
   }
 
   public void createPolicy(PolicyType type, String[] options) {
-    // TODO: Complete this method.
+    Profiles loadedProfile = findLoadedProfile();
+
+    switch (type) {
+      case HOME:
+        Home homePolicy =
+            new Home(stringToPositiveInt(options[0]), options[1], stringToBoolean(options[2]));
+        loadedProfile.setHomePolicy(homePolicy);
+      case CAR:
+        Car carPolicy =
+            new Car(
+                stringToPositiveInt(options[0]),
+                options[1],
+                options[2],
+                stringToBoolean(options[3]));
+        loadedProfile.setCarPolicy(carPolicy);
+      case LIFE:
+        Life lifePolicy = new Life(stringToPositiveInt(options[0]));
+        loadedProfile.setLifePolicy(lifePolicy);
+    }
   }
 }

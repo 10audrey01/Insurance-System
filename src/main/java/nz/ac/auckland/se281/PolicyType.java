@@ -1,5 +1,3 @@
 package nz.ac.auckland.se281;
 
-public abstract class PolicyType {
-  int sumInsured;
-}
+public abstract class PolicyType {}

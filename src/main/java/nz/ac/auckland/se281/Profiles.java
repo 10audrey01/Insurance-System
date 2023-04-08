@@ -32,4 +32,28 @@ public class Profiles {
   public void setProfileLoadedTo(boolean trueOrFalse) {
     this.profileLoaded = trueOrFalse;
   }
+
+  public PolicyType getHomePolicy() {
+    return homePolicy;
+  }
+
+  public void setHomePolicy(PolicyType homePolicy) {
+    this.homePolicy = homePolicy;
+  }
+
+  public PolicyType getCarPolicy() {
+    return carPolicy;
+  }
+
+  public void setCarPolicy(PolicyType carPolicy) {
+    this.carPolicy = carPolicy;
+  }
+
+  public PolicyType getLifePolicy() {
+    return lifePolicy;
+  }
+
+  public void setLifePolicy(PolicyType lifePolicy) {
+    this.lifePolicy = lifePolicy;
+  }
 }
