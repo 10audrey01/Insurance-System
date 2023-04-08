@@ -17,8 +17,13 @@ public class InsuranceSystem {
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage(strNumberOfProfiles, "s", ".");
     } else if (numberOfProfiles == 1) {
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage(strNumberOfProfiles, "", ":");
-      profileToPrint =
-          "1: " + (profileList.get(0)).getUserName() + ", " + (profileList.get(0)).getAge();
+      if (profileList.get(0).getProfileLoaded()) {
+        profileToPrint =
+            "*** 1: " + (profileList.get(0)).getUserName() + ", " + (profileList.get(0)).getAge();
+      } else {
+        profileToPrint =
+            "1: " + (profileList.get(0)).getUserName() + ", " + (profileList.get(0)).getAge();
+      }
       System.out.println(profileToPrint);
     } else {
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage(strNumberOfProfiles, "s", ":");
@@ -51,6 +56,7 @@ public class InsuranceSystem {
     int numberOfProfiles = profileList.size();
     boolean validProfile = true;
     boolean uniqueUsername = true;
+    boolean profileLoaded = false;
 
     String titlecaseUserName = toTitlecase(userName);
 
@@ -81,7 +87,18 @@ public class InsuranceSystem {
       MessageCli.INVALID_AGE.printMessage(age, titlecaseUserName);
     }
 
-    if (validProfile) {
+    for (int i = 0; i < numberOfProfiles; i++) {
+      if (profileList.get(i).getProfileLoaded()) {
+        profileLoaded = true;
+        System.out.println(
+            "Cannot create a new profile. First unload the profile for "
+                + (profileList.get(i)).getUserName()
+                + ".");
+        break;
+      }
+    }
+
+    if (validProfile && !profileLoaded) {
       Profiles profile = new Profiles(titlecaseUserName, age);
       profileList.add(profile);
       MessageCli.PROFILE_CREATED.printMessage(titlecaseUserName, age);
@@ -116,8 +133,9 @@ public class InsuranceSystem {
         profileFound = true;
         profileList.get(i).setProfileLoadedTo(true);
         for (int j = 0; j < numberOfProfiles; j++) {
-          if ((profileList.get(i).getProfileLoaded() == profileList.get(j).getProfileLoaded())
+          if (profileList.get(j).getProfileLoaded()
               && !(profileList.get(i).getUserName().equals(profileList.get(j).getUserName()))) {
+
             profileList.get(j).setProfileLoadedTo(false);
             // if there is a different previously loaded profile,
             // unload that profile and load the current profile
