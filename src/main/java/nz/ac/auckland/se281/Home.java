@@ -22,4 +22,17 @@ public class Home extends PolicyType {
   public boolean isRental() {
     return rental;
   }
+
+  public int findBasePremium() {
+    double doubleBasePremium = 0;
+
+    if (rental) {
+      doubleBasePremium = 0.02 * sumInsured;
+    } else {
+      doubleBasePremium = 0.01 * sumInsured;
+    }
+
+    int basePremium = (int) doubleBasePremium;
+    return basePremium;
+  }
 }

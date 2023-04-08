@@ -29,4 +29,21 @@ public class Car extends PolicyType {
   public boolean isMechanicalBreakdown() {
     return mechanicalBreakdown;
   }
+
+  public int findBasePremium(Profiles loadedProfile) {
+    double doubleBasePremium = 0;
+
+    if (Integer.parseInt(loadedProfile.getAge()) < 25) {
+      doubleBasePremium = 0.15 * sumInsured;
+    } else {
+      doubleBasePremium = 0.1 * sumInsured;
+    }
+
+    if (mechanicalBreakdown) {
+      doubleBasePremium = doubleBasePremium + 80;
+    }
+
+    int basePremium = (int) doubleBasePremium;
+    return basePremium;
+  }
 }
