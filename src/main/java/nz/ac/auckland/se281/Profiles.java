@@ -7,6 +7,7 @@ public class Profiles {
   private PolicyType homePolicy;
   private PolicyType carPolicy;
   private PolicyType lifePolicy;
+  private int numberOfPolicies;
 
   public Profiles(String userName, String age) {
     this.userName = userName;
@@ -15,6 +16,7 @@ public class Profiles {
     this.homePolicy = null;
     this.carPolicy = null;
     this.lifePolicy = null;
+    this.numberOfPolicies = 0;
   }
 
   public String getUserName() {
@@ -39,6 +41,7 @@ public class Profiles {
 
   public void setHomePolicy(PolicyType homePolicy) {
     this.homePolicy = homePolicy;
+    numberOfPolicies++;
   }
 
   public PolicyType getCarPolicy() {
@@ -47,6 +50,7 @@ public class Profiles {
 
   public void setCarPolicy(PolicyType carPolicy) {
     this.carPolicy = carPolicy;
+    numberOfPolicies++;
   }
 
   public PolicyType getLifePolicy() {
@@ -55,5 +59,10 @@ public class Profiles {
 
   public void setLifePolicy(PolicyType lifePolicy) {
     this.lifePolicy = lifePolicy;
+    numberOfPolicies++;
+  }
+
+  public int getNumberOfPolicies() {
+    return numberOfPolicies;
   }
 }

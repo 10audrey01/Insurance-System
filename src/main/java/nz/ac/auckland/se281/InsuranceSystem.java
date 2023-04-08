@@ -213,22 +213,36 @@ public class InsuranceSystem {
   public void createPolicy(PolicyType type, String[] options) {
     Profiles loadedProfile = findLoadedProfile();
 
-    switch (type) {
-      case HOME:
-        Home homePolicy =
-            new Home(stringToPositiveInt(options[0]), options[1], stringToBoolean(options[2]));
-        loadedProfile.setHomePolicy(homePolicy);
-      case CAR:
-        Car carPolicy =
-            new Car(
-                stringToPositiveInt(options[0]),
-                options[1],
-                options[2],
-                stringToBoolean(options[3]));
-        loadedProfile.setCarPolicy(carPolicy);
-      case LIFE:
-        Life lifePolicy = new Life(stringToPositiveInt(options[0]));
-        loadedProfile.setLifePolicy(lifePolicy);
+    if (loadedProfile == null) {
+      System.out.println("Need to load a profile in order to create a policy.");
+    }
+
+    if (loadedProfile != null) {
+      switch (type) {
+        case HOME:
+          Home homePolicy =
+              new Home(stringToPositiveInt(options[0]), options[1], stringToBoolean(options[2]));
+          loadedProfile.setHomePolicy(homePolicy);
+        case CAR:
+          Car carPolicy =
+              new Car(
+                  stringToPositiveInt(options[0]),
+                  options[1],
+                  options[2],
+                  stringToBoolean(options[3]));
+          loadedProfile.setCarPolicy(carPolicy);
+        case LIFE:
+          if (stringToPositiveInt(loadedProfile.getAge()) > 100) {
+            System.out.println(
+                loadedProfile.getUserName() + " is over the age limit. No policy was created.");
+          } else if (loadedProfile.getLifePolicy() != null) {
+            System.out.println(
+                loadedProfile.getUserName() + " already has a life policy. No policy was created.");
+          } else {
+            Life lifePolicy = new Life(stringToPositiveInt(options[0]));
+            loadedProfile.setLifePolicy(lifePolicy);
+          }
+      }
     }
   }
 }
