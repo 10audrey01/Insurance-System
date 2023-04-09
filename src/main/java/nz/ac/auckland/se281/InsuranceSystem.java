@@ -128,7 +128,9 @@ public class InsuranceSystem {
   }
 
   public void printPolicyDetails(
-      Profiles profile) { // prints the details of the policies according to the type of policy
+      Profiles
+          profile) { // prints the details of the policies according to the type of policy, with
+                     // premium and discount
 
     for (Policy policy : profile.getPoliciesList()) {
       if (policy instanceof Home) {
@@ -366,7 +368,7 @@ public class InsuranceSystem {
 
     if (loadedProfile != null) {
       switch (type) { // add new policy to the loaded profile according to the options parameter
-          // (which scanner user input)
+          // (which scanned user input)
         case HOME:
           Home homePolicy =
               new Home(stringToPositiveInt(options[0]), options[1], stringToBoolean(options[2]));
