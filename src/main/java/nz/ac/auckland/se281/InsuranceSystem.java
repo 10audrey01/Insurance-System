@@ -222,7 +222,7 @@ public class InsuranceSystem {
         case HOME:
           Home homePolicy =
               new Home(stringToPositiveInt(options[0]), options[1], stringToBoolean(options[2]));
-          loadedProfile.setHomePolicy(homePolicy);
+          loadedProfile.addPolicy(homePolicy);
           System.out.println("New home policy created for " + loadedProfile.getUserName() + ".");
           break;
         case CAR:
@@ -232,19 +232,19 @@ public class InsuranceSystem {
                   options[1],
                   options[2],
                   stringToBoolean(options[3]));
-          loadedProfile.setCarPolicy(carPolicy);
+          loadedProfile.addPolicy(carPolicy);
           System.out.println("New car policy created for " + loadedProfile.getUserName() + ".");
           break;
         case LIFE:
           if (stringToPositiveInt(loadedProfile.getAge()) > 100) {
             System.out.println(
                 loadedProfile.getUserName() + " is over the age limit. No policy was created.");
-          } else if (loadedProfile.getLifePolicy() != null) {
+          } else if (loadedProfile.isLifePolicy()) {
             System.out.println(
                 loadedProfile.getUserName() + " already has a life policy. No policy was created.");
           } else {
             Life lifePolicy = new Life(stringToPositiveInt(options[0]));
-            loadedProfile.setLifePolicy(lifePolicy);
+            loadedProfile.addPolicy(lifePolicy);
             System.out.println("New life policy created for " + loadedProfile.getUserName() + ".");
           }
           break;
