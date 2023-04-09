@@ -22,32 +22,46 @@ public class InsuranceSystem {
       }
       if (hasOnly1Policy) {
         if (profileList.get(0).getProfileLoaded()) {
-          MessageCli.PRINT_DB_PROFILE_HEADER_MEDIUM.printMessage(
-              "", "*** 1", profileList.get(0).getUserName(), profileList.get(0).getAge(), "1", "y");
+          MessageCli.PRINT_DB_PROFILE_HEADER_LONG.printMessage(
+              "",
+              "*** 1",
+              profileList.get(0).getUserName(),
+              profileList.get(0).getAge(),
+              "1",
+              "y",
+              findTotalPremium(profileList.get(0)));
           printPolicyDetails(profileList.get(0));
         } else {
-          MessageCli.PRINT_DB_PROFILE_HEADER_MEDIUM.printMessage(
-              "", "1", profileList.get(0).getUserName(), profileList.get(0).getAge(), "1", "y");
+          MessageCli.PRINT_DB_PROFILE_HEADER_LONG.printMessage(
+              "",
+              "1",
+              profileList.get(0).getUserName(),
+              profileList.get(0).getAge(),
+              "1",
+              "y",
+              findTotalPremium(profileList.get(0)));
           printPolicyDetails(profileList.get(0));
         }
       } else {
         if (profileList.get(0).getProfileLoaded()) {
-          MessageCli.PRINT_DB_PROFILE_HEADER_MEDIUM.printMessage(
+          MessageCli.PRINT_DB_PROFILE_HEADER_LONG.printMessage(
               "",
               "*** 1",
               profileList.get(0).getUserName(),
               profileList.get(0).getAge(),
               String.valueOf(profileList.get(0).getNumberOfPolicies()),
-              "ies");
+              "ies",
+              findTotalPremium(profileList.get(0)));
           printPolicyDetails(profileList.get(0));
         } else {
-          MessageCli.PRINT_DB_PROFILE_HEADER_MEDIUM.printMessage(
+          MessageCli.PRINT_DB_PROFILE_HEADER_LONG.printMessage(
               "",
               "1",
               profileList.get(0).getUserName(),
               profileList.get(0).getAge(),
               String.valueOf(profileList.get(0).getNumberOfPolicies()),
-              "ies");
+              "ies",
+              findTotalPremium(profileList.get(0)));
           printPolicyDetails(profileList.get(0));
         }
       }
@@ -62,37 +76,46 @@ public class InsuranceSystem {
         }
         if (hasOnly1Policy) {
           if (profileList.get(i).getProfileLoaded()) {
-            MessageCli.PRINT_DB_PROFILE_HEADER_MEDIUM.printMessage(
+            MessageCli.PRINT_DB_PROFILE_HEADER_LONG.printMessage(
                 "*** ",
                 rank,
                 profileList.get(i).getUserName(),
                 profileList.get(i).getAge(),
                 "1",
-                "y");
+                "y",
+                findTotalPremium(profileList.get(i)));
             printPolicyDetails(profileList.get(i));
           } else {
-            MessageCli.PRINT_DB_PROFILE_HEADER_MEDIUM.printMessage(
-                "", rank, profileList.get(i).getUserName(), profileList.get(i).getAge(), "1", "y");
+            MessageCli.PRINT_DB_PROFILE_HEADER_LONG.printMessage(
+                "",
+                rank,
+                profileList.get(i).getUserName(),
+                profileList.get(i).getAge(),
+                "1",
+                "y",
+                findTotalPremium(profileList.get(i)));
             printPolicyDetails(profileList.get(i));
           }
         } else {
           if (profileList.get(i).getProfileLoaded()) {
-            MessageCli.PRINT_DB_PROFILE_HEADER_MEDIUM.printMessage(
+            MessageCli.PRINT_DB_PROFILE_HEADER_LONG.printMessage(
                 "*** ",
                 rank,
                 profileList.get(i).getUserName(),
                 profileList.get(i).getAge(),
                 String.valueOf(profileList.get(i).getNumberOfPolicies()),
-                "ies");
+                "ies",
+                findTotalPremium(profileList.get(i)));
             printPolicyDetails(profileList.get(i));
           } else {
-            MessageCli.PRINT_DB_PROFILE_HEADER_MEDIUM.printMessage(
+            MessageCli.PRINT_DB_PROFILE_HEADER_LONG.printMessage(
                 "",
                 rank,
                 profileList.get(i).getUserName(),
                 profileList.get(i).getAge(),
                 String.valueOf(profileList.get(i).getNumberOfPolicies()),
-                "ies");
+                "ies",
+                findTotalPremium(profileList.get(i)));
             printPolicyDetails(profileList.get(i));
           }
         }
@@ -144,6 +167,25 @@ public class InsuranceSystem {
                 + ")");
       }
     }
+  }
+
+  public String findTotalPremium(Profiles profile) {
+    int totalPremium = 0;
+
+    for (Policy policy : profile.getPoliciesList()) {
+      if (policy instanceof Home) {
+        Home homePolicy = (Home) policy;
+        totalPremium += homePolicy.findDiscount(profile, homePolicy.findBasePremium());
+      } else if (policy instanceof Car) {
+        Car carPolicy = (Car) policy;
+        totalPremium += carPolicy.findDiscount(profile, carPolicy.findBasePremium(profile));
+      } else if (policy instanceof Life) {
+        Life lifePolicy = (Life) policy;
+        totalPremium += lifePolicy.findDiscount(profile, lifePolicy.findBasePremium(profile));
+      }
+    }
+
+    return Integer.toString(totalPremium);
   }
 
   public void createNewProfile(String userName, String age) {
