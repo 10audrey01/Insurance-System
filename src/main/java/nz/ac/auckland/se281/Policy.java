@@ -2,7 +2,9 @@ package nz.ac.auckland.se281;
 
 public abstract class Policy {
 
-  public int findDiscount(Profiles loadedProfile, int basePremium) {
+  public int findDiscount(
+      Profiles loadedProfile,
+      int basePremium) { // calculates the discount for the base premium of each policy
     double doubleBasePremium = basePremium;
 
     if (loadedProfile.getNumberOfPolicies() == 2) {

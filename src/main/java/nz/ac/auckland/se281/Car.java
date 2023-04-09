@@ -30,7 +30,10 @@ public class Car extends Policy {
     return mechanicalBreakdown;
   }
 
-  public int findBasePremium(Profiles loadedProfile) {
+  public int findBasePremium(
+      Profiles
+          loadedProfile) { // finds base premium depending on age and if mechanical breakdown is
+                           // included
     double doubleBasePremium = 0;
 
     if (Integer.parseInt(loadedProfile.getAge()) < 25) {

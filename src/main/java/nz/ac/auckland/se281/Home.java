@@ -23,7 +23,7 @@ public class Home extends Policy {
     return rental;
   }
 
-  public int findBasePremium() {
+  public int findBasePremium() { // find the base premium depending on if the home is rented or not
     double doubleBasePremium = 0;
 
     if (rental) {

@@ -8,20 +8,24 @@ public class InsuranceSystem {
 
   public InsuranceSystem() {}
 
-  public void printDatabase() {
+  public void
+      printDatabase() { // sectioned into 3 parts: 1. print profile header 2. print policy details
+    // 3. print total premium
     int numberOfProfiles = profileList.size();
     String strNumberOfProfiles = String.valueOf(numberOfProfiles); // convert int to string
     boolean hasOnly1Policy = false;
 
     if (numberOfProfiles == 0) {
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage(strNumberOfProfiles, "s", ".");
-    } else if (numberOfProfiles == 1) {
+    } else if (numberOfProfiles == 1) { // if else statement for when there is only 1 profile
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage(strNumberOfProfiles, "", ":");
-      if (profileList.get(0).getNumberOfPolicies() == 1) {
+      if (profileList.get(0).getNumberOfPolicies()
+          == 1) { // if else statement for when there is only 1 policy for correct grammatical
+        // output
         hasOnly1Policy = true;
       }
       if (hasOnly1Policy) {
-        if (profileList.get(0).getProfileLoaded()) {
+        if (profileList.get(0).getProfileLoaded()) { // check if profile is loaded
           MessageCli.PRINT_DB_PROFILE_HEADER_LONG.printMessage(
               "",
               "*** 1",
@@ -65,7 +69,7 @@ public class InsuranceSystem {
           printPolicyDetails(profileList.get(0));
         }
       }
-    } else {
+    } else { // same as above but for when there is more than 1 profile
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage(strNumberOfProfiles, "s", ":");
       for (int i = 0; i < numberOfProfiles; i++) {
         String rank = Integer.toString(i + 1);
@@ -123,7 +127,8 @@ public class InsuranceSystem {
     }
   }
 
-  public void printPolicyDetails(Profiles profile) {
+  public void printPolicyDetails(
+      Profiles profile) { // prints the details of the policies according to the type of policy
 
     for (Policy policy : profile.getPoliciesList()) {
       if (policy instanceof Home) {
@@ -169,7 +174,9 @@ public class InsuranceSystem {
     }
   }
 
-  public String findTotalPremium(Profiles profile) {
+  public String findTotalPremium(
+      Profiles profile) { // calculates the total premium for the profile and returns a string for
+    // print_db
     int totalPremium = 0;
 
     for (Policy policy : profile.getPoliciesList()) {
@@ -251,7 +258,8 @@ public class InsuranceSystem {
     }
   }
 
-  public boolean stringToBoolean(String yesOrNo) {
+  public boolean stringToBoolean(
+      String yesOrNo) { // created own method to convert yes/no to boolean
     if (yesOrNo.toLowerCase().equals("yes")) {
       return true;
     } else if (yesOrNo.toLowerCase().equals("no")) {
@@ -281,13 +289,14 @@ public class InsuranceSystem {
         System.out.println("Profile loaded for " + titlecaseUserName + ".");
         profileFound = true;
         profileList.get(i).setProfileLoadedTo(true);
-        for (int j = 0; j < profileList.size(); j++) {
+        for (int j = 0;
+            j < profileList.size();
+            j++) { // if there is a different previously loaded profile,
+          // unload that profile and load the current profile
           if (profileList.get(j).getProfileLoaded()
               && !(profileList.get(i).getUserName().equals(profileList.get(j).getUserName()))) {
 
             profileList.get(j).setProfileLoadedTo(false);
-            // if there is a different previously loaded profile,
-            // unload that profile and load the current profile
           }
         }
       }
@@ -298,7 +307,9 @@ public class InsuranceSystem {
     }
   }
 
-  public Profiles findLoadedProfile() {
+  public Profiles
+      findLoadedProfile() { // finds the loaded profile and returns it, used in unloadProfile and
+    // createPolicy
     Profiles loadedProfile = null;
 
     for (int i = 0; i < profileList.size(); i++) {
@@ -321,7 +332,7 @@ public class InsuranceSystem {
     }
   }
 
-  public void deleteProfile(String userName) {
+  public void deleteProfile(String userName) { // deletes profile if it is not loaded
     String titlecaseUserName = toTitlecase(userName);
     boolean profileFound = false;
 
@@ -354,7 +365,8 @@ public class InsuranceSystem {
     }
 
     if (loadedProfile != null) {
-      switch (type) {
+      switch (type) { // add new policy to the loaded profile according to the options parameter
+          // (which scanner user input)
         case HOME:
           Home homePolicy =
               new Home(stringToPositiveInt(options[0]), options[1], stringToBoolean(options[2]));
