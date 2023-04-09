@@ -92,6 +92,51 @@ public class InsuranceSystem {
     }
   }
 
+  public String printPolicyDetails(Profiles profile) {
+    String policyDetails = "";
+
+    for (Policy policy : profile.getPoliciesList()) {
+      if (policy instanceof Home) {
+        Home homePolicy = (Home) policy;
+        policyDetails =
+            "Home policy ("
+                + homePolicy.getAddress()
+                + "Sum Insured: $"
+                + homePolicy.getSumInsured()
+                + ", "
+                + "Premium: $"
+                + homePolicy.findBasePremium()
+                + "-> $"
+                + homePolicy.findDiscount(profile, homePolicy.findBasePremium());
+
+      } else if (policy instanceof Car) {
+        Car carPolicy = (Car) policy;
+        policyDetails =
+            "Car policy ("
+                + carPolicy.getMakeAndModel()
+                + "Sum Insured: $"
+                + carPolicy.getSumInsured()
+                + ", "
+                + "Premium: $"
+                + carPolicy.findBasePremium(profile)
+                + "-> $"
+                + carPolicy.findDiscount(profile, carPolicy.findBasePremium(profile));
+
+      } else if (policy instanceof Life) {
+        Life lifePolicy = (Life) policy;
+        policyDetails =
+            "Life policy (Sum Insured: $"
+                + lifePolicy.getSumInsured()
+                + ", "
+                + "Premium: $"
+                + lifePolicy.findBasePremium(profile)
+                + "-> $"
+                + lifePolicy.findDiscount(profile, lifePolicy.findBasePremium(profile));
+      }
+    }
+    return policyDetails;
+  }
+
   public void createNewProfile(String userName, String age) {
     boolean validProfile = true;
     boolean uniqueUsername = true;
