@@ -1,6 +1,6 @@
 package nz.ac.auckland.se281;
 
-public class Home extends PolicyType {
+public class Home extends Policy {
   private int sumInsured;
   private String address;
   private boolean rental;

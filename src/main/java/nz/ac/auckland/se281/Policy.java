@@ -1,6 +1,6 @@
 package nz.ac.auckland.se281;
 
-public abstract class PolicyType {
+public abstract class Policy {
 
   public int findDiscount(Profiles loadedProfile, int basePremium) {
     double doubleBasePremium = basePremium;

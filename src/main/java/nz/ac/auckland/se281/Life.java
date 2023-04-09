@@ -1,6 +1,6 @@
 package nz.ac.auckland.se281;
 
-public class Life extends PolicyType {
+public class Life extends Policy {
   private int sumInsured;
 
   public Life(int sumInsured) {
@@ -12,9 +12,10 @@ public class Life extends PolicyType {
   }
 
   public int findBasePremium(Profiles loadedProfile) {
-    double doubleBasePremium = 0;
+    double doubleBasePremium;
+    int intAge = Integer.parseInt(loadedProfile.getAge());
 
-    doubleBasePremium = ((1 + (Integer.parseInt(loadedProfile.getAge()) / 100)) / 100) * sumInsured;
+    doubleBasePremium = sumInsured * (1 + (intAge / 100.0)) / 100.0;
 
     int basePremium = (int) doubleBasePremium;
     return basePremium;

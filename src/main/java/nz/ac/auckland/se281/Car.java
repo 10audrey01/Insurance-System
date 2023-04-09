@@ -1,6 +1,6 @@
 package nz.ac.auckland.se281;
 
-public class Car extends PolicyType {
+public class Car extends Policy {
   private int sumInsured;
   private String makeAndModel;
   private String licensePlate;

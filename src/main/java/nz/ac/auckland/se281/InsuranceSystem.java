@@ -24,9 +24,11 @@ public class InsuranceSystem {
         if (profileList.get(0).getProfileLoaded()) {
           MessageCli.PRINT_DB_PROFILE_HEADER_MEDIUM.printMessage(
               "", "*** 1", profileList.get(0).getUserName(), profileList.get(0).getAge(), "1", "y");
+          printPolicyDetails(profileList.get(0));
         } else {
           MessageCli.PRINT_DB_PROFILE_HEADER_MEDIUM.printMessage(
               "", "1", profileList.get(0).getUserName(), profileList.get(0).getAge(), "1", "y");
+          printPolicyDetails(profileList.get(0));
         }
       } else {
         if (profileList.get(0).getProfileLoaded()) {
@@ -37,6 +39,7 @@ public class InsuranceSystem {
               profileList.get(0).getAge(),
               String.valueOf(profileList.get(0).getNumberOfPolicies()),
               "ies");
+          printPolicyDetails(profileList.get(0));
         } else {
           MessageCli.PRINT_DB_PROFILE_HEADER_MEDIUM.printMessage(
               "",
@@ -45,6 +48,7 @@ public class InsuranceSystem {
               profileList.get(0).getAge(),
               String.valueOf(profileList.get(0).getNumberOfPolicies()),
               "ies");
+          printPolicyDetails(profileList.get(0));
         }
       }
     } else {
@@ -65,9 +69,11 @@ public class InsuranceSystem {
                 profileList.get(i).getAge(),
                 "1",
                 "y");
+            printPolicyDetails(profileList.get(i));
           } else {
             MessageCli.PRINT_DB_PROFILE_HEADER_MEDIUM.printMessage(
                 "", rank, profileList.get(i).getUserName(), profileList.get(i).getAge(), "1", "y");
+            printPolicyDetails(profileList.get(i));
           }
         } else {
           if (profileList.get(i).getProfileLoaded()) {
@@ -78,6 +84,7 @@ public class InsuranceSystem {
                 profileList.get(i).getAge(),
                 String.valueOf(profileList.get(i).getNumberOfPolicies()),
                 "ies");
+            printPolicyDetails(profileList.get(i));
           } else {
             MessageCli.PRINT_DB_PROFILE_HEADER_MEDIUM.printMessage(
                 "",
@@ -86,55 +93,57 @@ public class InsuranceSystem {
                 profileList.get(i).getAge(),
                 String.valueOf(profileList.get(i).getNumberOfPolicies()),
                 "ies");
+            printPolicyDetails(profileList.get(i));
           }
         }
       }
     }
   }
 
-  public String printPolicyDetails(Profiles profile) {
-    String policyDetails = "";
+  public void printPolicyDetails(Profiles profile) {
 
     for (Policy policy : profile.getPoliciesList()) {
       if (policy instanceof Home) {
         Home homePolicy = (Home) policy;
-        policyDetails =
-            "Home policy ("
+        System.out.println(
+            "Home Policy ("
                 + homePolicy.getAddress()
-                + "Sum Insured: $"
+                + ", Sum Insured: $"
                 + homePolicy.getSumInsured()
                 + ", "
                 + "Premium: $"
                 + homePolicy.findBasePremium()
-                + "-> $"
-                + homePolicy.findDiscount(profile, homePolicy.findBasePremium());
+                + " -> $"
+                + homePolicy.findDiscount(profile, homePolicy.findBasePremium())
+                + ")");
 
       } else if (policy instanceof Car) {
         Car carPolicy = (Car) policy;
-        policyDetails =
-            "Car policy ("
+        System.out.println(
+            "Car Policy ("
                 + carPolicy.getMakeAndModel()
-                + "Sum Insured: $"
+                + ", Sum Insured: $"
                 + carPolicy.getSumInsured()
                 + ", "
                 + "Premium: $"
                 + carPolicy.findBasePremium(profile)
-                + "-> $"
-                + carPolicy.findDiscount(profile, carPolicy.findBasePremium(profile));
+                + " -> $"
+                + carPolicy.findDiscount(profile, carPolicy.findBasePremium(profile))
+                + ")");
 
       } else if (policy instanceof Life) {
         Life lifePolicy = (Life) policy;
-        policyDetails =
-            "Life policy (Sum Insured: $"
+        System.out.println(
+            "Life Policy (Sum Insured: $"
                 + lifePolicy.getSumInsured()
                 + ", "
                 + "Premium: $"
                 + lifePolicy.findBasePremium(profile)
-                + "-> $"
-                + lifePolicy.findDiscount(profile, lifePolicy.findBasePremium(profile));
+                + " -> $"
+                + lifePolicy.findDiscount(profile, lifePolicy.findBasePremium(profile))
+                + ")");
       }
     }
-    return policyDetails;
   }
 
   public void createNewProfile(String userName, String age) {

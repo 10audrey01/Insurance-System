@@ -6,13 +6,13 @@ public class Profiles {
   private String userName;
   private String age;
   private boolean profileLoaded;
-  private ArrayList<PolicyType> policiesList = new ArrayList<PolicyType>();
+  private ArrayList<Policy> policiesList = new ArrayList<Policy>();
 
   public Profiles(String userName, String age) {
     this.userName = userName;
     this.age = age;
     this.profileLoaded = false;
-    this.policiesList = new ArrayList<PolicyType>();
+    this.policiesList = new ArrayList<Policy>();
   }
 
   public String getUserName() {
@@ -31,17 +31,21 @@ public class Profiles {
     this.profileLoaded = trueOrFalse;
   }
 
-  public void addPolicy(PolicyType policy) {
+  public void addPolicy(Policy policy) {
     policiesList.add(policy);
   }
 
   public boolean hasLifePolicy() {
-    for (PolicyType policy : policiesList) {
+    for (Policy policy : policiesList) {
       if (policy instanceof Life) {
         return true;
       }
     }
     return false;
+  }
+
+  public ArrayList<Policy> getPoliciesList() {
+    return policiesList;
   }
 
   public int getNumberOfPolicies() {
