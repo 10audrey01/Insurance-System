@@ -1,22 +1,18 @@
 package nz.ac.auckland.se281;
 
+import java.util.ArrayList;
+
 public class Profiles {
   private String userName;
   private String age;
   private boolean profileLoaded;
-  private PolicyType homePolicy;
-  private PolicyType carPolicy;
-  private PolicyType lifePolicy;
-  private int numberOfPolicies;
+  private ArrayList<PolicyType> policiesList = new ArrayList<PolicyType>();
 
   public Profiles(String userName, String age) {
     this.userName = userName;
     this.age = age;
     this.profileLoaded = false;
-    this.homePolicy = null;
-    this.carPolicy = null;
-    this.lifePolicy = null;
-    this.numberOfPolicies = 0;
+    this.policiesList = new ArrayList<PolicyType>();
   }
 
   public String getUserName() {
@@ -35,34 +31,20 @@ public class Profiles {
     this.profileLoaded = trueOrFalse;
   }
 
-  public PolicyType getHomePolicy() {
-    return homePolicy;
+  public void addPolicy(PolicyType policy) {
+    policiesList.add(policy);
   }
 
-  public void setHomePolicy(PolicyType homePolicy) {
-    this.homePolicy = homePolicy;
-    numberOfPolicies++;
-  }
-
-  public PolicyType getCarPolicy() {
-    return carPolicy;
-  }
-
-  public void setCarPolicy(PolicyType carPolicy) {
-    this.carPolicy = carPolicy;
-    numberOfPolicies++;
-  }
-
-  public PolicyType getLifePolicy() {
-    return lifePolicy;
-  }
-
-  public void setLifePolicy(PolicyType lifePolicy) {
-    this.lifePolicy = lifePolicy;
-    numberOfPolicies++;
+  public boolean isLifePolicy() {
+    for (PolicyType policy : policiesList) {
+      if (policy instanceof Life) {
+        return true;
+      }
+    }
+    return false;
   }
 
   public int getNumberOfPolicies() {
-    return numberOfPolicies;
+    return policiesList.size();
   }
 }
