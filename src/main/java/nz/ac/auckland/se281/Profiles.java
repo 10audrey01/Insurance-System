@@ -35,7 +35,7 @@ public class Profiles {
     policiesList.add(policy);
   }
 
-  public boolean isLifePolicy() {
+  public boolean hasLifePolicy() {
     for (PolicyType policy : policiesList) {
       if (policy instanceof Life) {
         return true;

@@ -11,43 +11,83 @@ public class InsuranceSystem {
   public void printDatabase() {
     int numberOfProfiles = profileList.size();
     String strNumberOfProfiles = String.valueOf(numberOfProfiles); // convert int to string
-    String profileToPrint;
+    boolean hasOnly1Policy = false;
 
     if (numberOfProfiles == 0) {
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage(strNumberOfProfiles, "s", ".");
     } else if (numberOfProfiles == 1) {
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage(strNumberOfProfiles, "", ":");
-      if (profileList.get(0).getProfileLoaded()) {
-        profileToPrint =
-            "*** 1: " + (profileList.get(0)).getUserName() + ", " + (profileList.get(0)).getAge();
-      } else {
-        profileToPrint =
-            "1: " + (profileList.get(0)).getUserName() + ", " + (profileList.get(0)).getAge();
+      if (profileList.get(0).getNumberOfPolicies() == 1) {
+        hasOnly1Policy = true;
       }
-      System.out.println(profileToPrint);
+      if (hasOnly1Policy) {
+        if (profileList.get(0).getProfileLoaded()) {
+          MessageCli.PRINT_DB_PROFILE_HEADER_MEDIUM.printMessage(
+              "", "*** 1", profileList.get(0).getUserName(), profileList.get(0).getAge(), "1", "y");
+        } else {
+          MessageCli.PRINT_DB_PROFILE_HEADER_MEDIUM.printMessage(
+              "", "1", profileList.get(0).getUserName(), profileList.get(0).getAge(), "1", "y");
+        }
+      } else {
+        if (profileList.get(0).getProfileLoaded()) {
+          MessageCli.PRINT_DB_PROFILE_HEADER_MEDIUM.printMessage(
+              "",
+              "*** 1",
+              profileList.get(0).getUserName(),
+              profileList.get(0).getAge(),
+              String.valueOf(profileList.get(0).getNumberOfPolicies()),
+              "ies");
+        } else {
+          MessageCli.PRINT_DB_PROFILE_HEADER_MEDIUM.printMessage(
+              "",
+              "1",
+              profileList.get(0).getUserName(),
+              profileList.get(0).getAge(),
+              String.valueOf(profileList.get(0).getNumberOfPolicies()),
+              "ies");
+        }
+      }
     } else {
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage(strNumberOfProfiles, "s", ":");
       for (int i = 0; i < numberOfProfiles; i++) {
-        int rank = i + 1;
+        String rank = Integer.toString(i + 1);
+        hasOnly1Policy = false;
 
-        if (profileList.get(i).getProfileLoaded()) {
-          profileToPrint =
-              "*** "
-                  + rank
-                  + ": "
-                  + (profileList.get(i)).getUserName()
-                  + ", "
-                  + (profileList.get(i)).getAge();
-        } else {
-          profileToPrint =
-              rank
-                  + ": "
-                  + (profileList.get(i)).getUserName()
-                  + ", "
-                  + (profileList.get(i)).getAge();
+        if (profileList.get(i).getNumberOfPolicies() == 1) {
+          hasOnly1Policy = true;
         }
-
-        System.out.println(profileToPrint);
+        if (hasOnly1Policy) {
+          if (profileList.get(i).getProfileLoaded()) {
+            MessageCli.PRINT_DB_PROFILE_HEADER_MEDIUM.printMessage(
+                "*** ",
+                rank,
+                profileList.get(i).getUserName(),
+                profileList.get(i).getAge(),
+                "1",
+                "y");
+          } else {
+            MessageCli.PRINT_DB_PROFILE_HEADER_MEDIUM.printMessage(
+                "", rank, profileList.get(i).getUserName(), profileList.get(i).getAge(), "1", "y");
+          }
+        } else {
+          if (profileList.get(i).getProfileLoaded()) {
+            MessageCli.PRINT_DB_PROFILE_HEADER_MEDIUM.printMessage(
+                "*** ",
+                rank,
+                profileList.get(i).getUserName(),
+                profileList.get(i).getAge(),
+                String.valueOf(profileList.get(i).getNumberOfPolicies()),
+                "ies");
+          } else {
+            MessageCli.PRINT_DB_PROFILE_HEADER_MEDIUM.printMessage(
+                "",
+                rank,
+                profileList.get(i).getUserName(),
+                profileList.get(i).getAge(),
+                String.valueOf(profileList.get(i).getNumberOfPolicies()),
+                "ies");
+          }
+        }
       }
     }
   }
@@ -239,7 +279,7 @@ public class InsuranceSystem {
           if (stringToPositiveInt(loadedProfile.getAge()) > 100) {
             System.out.println(
                 loadedProfile.getUserName() + " is over the age limit. No policy was created.");
-          } else if (loadedProfile.isLifePolicy()) {
+          } else if (loadedProfile.hasLifePolicy()) {
             System.out.println(
                 loadedProfile.getUserName() + " already has a life policy. No policy was created.");
           } else {
