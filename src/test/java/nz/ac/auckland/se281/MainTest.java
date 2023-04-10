@@ -415,6 +415,31 @@ public class MainTest {
       assertContains("2: Jenny, 21");
       assertContains("3: Jello, 100");
     }
+
+    @Test
+    public void TY_03_your_own_test() throws Exception {
+      // Write your own test here, in the same format as the other tests.
+      runCommands(
+          CREATE_PROFILE,
+          "Jenny",
+          100,
+          LOAD_PROFILE,
+          "Jenny",
+          POLICY_LIFE,
+          options("100000"),
+          POLICY_LIFE,
+          options("100000"),
+          UNLOAD_PROFILE,
+          PRINT_DB);
+
+      assertContains("Profile loaded for Jenny.");
+      assertContains("New life policy created for Jenny.");
+
+      assertContains("Database has 1 profile:");
+      assertContains("1: Jenny, 100, 1 policy for a total of $2000");
+      assertContains("Life Policy (Sum Insured: $100000, Premium: $2000 -> $2000)");
+      assertContains("Jenny already has a life policy. No policy was created.");
+    }
   }
 
   private static final Object[] CREATE_SOME_CLIENTS =
