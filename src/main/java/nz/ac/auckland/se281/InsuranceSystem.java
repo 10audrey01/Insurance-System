@@ -130,7 +130,7 @@ public class InsuranceSystem {
   public void printPolicyDetails(
       Profiles
           profile) { // prints the details of the policies according to the type of policy, with
-                     // premium and discount
+    // premium and discount
 
     for (Policy policy : profile.getPoliciesList()) {
       if (policy instanceof Home) {
@@ -352,7 +352,7 @@ public class InsuranceSystem {
     }
 
     if (!profileFound) {
-      System.out.println("No profile found for " + titlecaseUserName + ". Profile not deleted.");
+      System.out.println("No profile found for " + titlecaseUserName + ". No profile was deleted.");
     }
   }
 
@@ -388,7 +388,8 @@ public class InsuranceSystem {
                 loadedProfile.getUserName() + " is over the age limit. No policy was created.");
           } else if (loadedProfile.hasLifePolicy()) {
             System.out.println(
-                loadedProfile.getUserName() + " already has a life policy. No policy was created.");
+                loadedProfile.getUserName()
+                    + " already has a life policy. No new policy was created.");
           } else {
             Life lifePolicy = new Life(stringToPositiveInt(options[0]));
             loadedProfile.addPolicy(lifePolicy);
