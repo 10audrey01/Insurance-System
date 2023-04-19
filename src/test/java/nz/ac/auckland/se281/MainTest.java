@@ -12,9 +12,9 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(Suite.class)
 @SuiteClasses({
   MainTest.Task1.class,
-  MainTest.Task2.class, // Uncomment this line when to start Task 2
-  MainTest.Task3.class, // Uncomment this line when to start Task 3
-  MainTest.YourTests.class, // Uncomment this line to run your own tests
+  MainTest.Task2.class, 
+  MainTest.Task3.class, 
+  MainTest.YourTests.class, 
 })
 public class MainTest {
   public static class Task1 extends CliTest {
@@ -363,7 +363,6 @@ public class MainTest {
 
     @Test
     public void TY_01_your_own_test() throws Exception {
-      // Write your own test here, in the same format as the other tests.
       runCommands(
           PRINT_DB,
           CREATE_PROFILE,
@@ -394,7 +393,6 @@ public class MainTest {
 
     @Test
     public void TY_02_your_own_test() throws Exception {
-      // Write your own test here, in the same format as the other tests.
       runCommands(
           PRINT_DB,
           CREATE_PROFILE,
@@ -418,7 +416,6 @@ public class MainTest {
 
     @Test
     public void TY_03_your_own_test() throws Exception {
-      // Write your own test here, in the same format as the other tests.
       runCommands(
           CREATE_PROFILE,
           "Jenny",
