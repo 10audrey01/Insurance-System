@@ -199,7 +199,6 @@ public class InsuranceSystem {
 
   public void createNewProfile(String userName, String age) {
     boolean validProfile = true;
-    boolean uniqueUsername = true;
     boolean profileLoaded = false;
 
     String titlecaseUserName = toTitlecase(userName);
@@ -211,7 +210,8 @@ public class InsuranceSystem {
               titlecaseUserName)) { // got Profile in profileList at index i, then got userName and
         // compared
         // to parameter userName
-        uniqueUsername = false;
+        validProfile = false;
+        MessageCli.INVALID_USERNAME_NOT_UNIQUE.printMessage(titlecaseUserName);
         break;
       }
     }
@@ -219,9 +219,6 @@ public class InsuranceSystem {
     if (userName.length() < 3) {
       validProfile = false;
       MessageCli.INVALID_USERNAME_TOO_SHORT.printMessage(titlecaseUserName);
-    } else if (!uniqueUsername) {
-      validProfile = false;
-      MessageCli.INVALID_USERNAME_NOT_UNIQUE.printMessage(titlecaseUserName);
     }
 
     int intAge = stringToPositiveInt(age); // convert parameter age to integer
@@ -309,9 +306,8 @@ public class InsuranceSystem {
     }
   }
 
-  public Profiles
-      findLoadedProfile() { // finds the loaded profile and returns it, used in unloadProfile and
-    // createPolicy
+  public Profiles findLoadedProfile() { // finds the loaded profile and returns it, used in unloadProfile and
+                                        // createPolicy
     Profiles loadedProfile = null;
 
     for (int i = 0; i < profileList.size(); i++) {
