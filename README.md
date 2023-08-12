@@ -1,5 +1,9 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/miIEXoNC)
-# Assignment 1
+This system is one that an insurance company will use to manage their clients and policies. The system will be used by the insurance company’s staff to:
 
-You will find instructions for this assignment on the course website.
-
+Add new clients,
+Delete existing clients,
+Add new policies for existing clients,
+Calculate the cost of premiums for any given policy,
+Calculate the total cost of premiums for all policies for a client,
+Applying discounts for clients who have multiple policies.
+Due to the insurance company’s limited budget (it’s apparently tough being an insurance company), we will only design for them a terminal-driven interface. This means that the system will be controlled by a menu system that will be displayed on the terminal. The menu will allow the staff member to select from a list of commands. The staff member will be able to select a command by typing its code, and any arguments it expects. Some commands require additional options, which are prompted by the system one at a time. The system will then execute the appropriate action.
